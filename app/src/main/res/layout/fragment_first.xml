@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/button_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editNameText"
+            android:layout_width="367dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Nome"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastro"
+            app:layout_constraintTop_toBottomOf="@+id/button_first"
+            tools:layout_editor_absoluteX="16dp"
+            />
+
+        <EditText
+            android:id="@+id/editPasswordText"
+            android:layout_width="367dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toStartOf="@+id/editNameText"
+            app:layout_constraintTop_toBottomOf="@+id/editNameText" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="124dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:onClick="sendMessage"
+            android:text="Salvar"
+            app:layout_constraintStart_toStartOf="@+id/editPasswordText"
+            app:layout_constraintTop_toBottomOf="@+id/editPasswordText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
