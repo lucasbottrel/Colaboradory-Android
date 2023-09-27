@@ -16,6 +16,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.colaboradory.APIservice.API
 import com.colaboradory.frontendandroid.databinding.ActivityMainBinding
+import com.colaboradory.frontendandroid.databinding.FragmentFirstBinding
 import com.colaboradory.model.Colaborador
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.ResponseBody
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var nome: EditText? = null;
     private var senha: EditText? = null;
-    private var tableLayout: TableLayout? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,15 +41,15 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        val view = binding!!.root
+
+        nome = view.findViewById(R.id.editNameText)
+        senha = view.findViewById(R.id.editPasswordText)
+
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        nome = findViewById(R.id.editNameText)
-        senha = findViewById(R.id.editPasswordText)
-        tableLayout = findViewById<TableLayout>(R.id.table)
-
-        ListaColaboradores()
 
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -79,55 +79,13 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    fun ListaColaboradores(){
-        try {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.2.105:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            val apiService = retrofit.create(API::class.java)
-
-            apiService.listaColaboradores().enqueue(object : Callback<List<Colaborador>> {
-                override fun onResponse(call: Call<List<Colaborador>>,
-                                        response: Response<List<Colaborador>>) {
-                    if (response.isSuccessful) {
-                        val colaboradores = response.body()
-                        if (colaboradores != null) {
-                            for (colaborador in colaboradores) {
-                                println("ID: ${colaborador.id}, Nome: ${colaborador.nome}")
-
-                                val tableRow = TableRow(this@MainActivity)
-
-                                val idTextView = TextView(this@MainActivity)
-                                idTextView.text = colaborador.id.toString()
-                                tableRow.addView(idTextView)
-
-                                val nomeTextView = TextView(this@MainActivity)
-                                nomeTextView.text = colaborador.nome
-                                tableRow.addView(nomeTextView)
-
-                                tableLayout?.addView(tableRow)
-                            }
-
-                        }
-                    } else {
-                        println("Erro na resposta: ${response.code()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<List<Colaborador>>, t: Throwable) {
-                    println("Não enviado!");
-                    t.printStackTrace();
-                }
-
-            })
-        } catch (e: Exception) {
-            e.printStackTrace();
-        }
+    fun sendMessage(view: View){
+        val nomeValue = if (nome != null) nome!!.text else "";
+        val senhaValue = if (senha != null) senha!!.text else "";
+        SaveColaborador(nomeValue.toString(), senhaValue.toString());
     }
 
-    fun SaveColaborador(nome: String, senha: String){
+    fun SaveColaborador(nome: String, senha: String) {
         try {
             val retrofit = Retrofit.Builder()
                 .baseUrl("http://192.168.2.105:8080/")
@@ -142,7 +100,10 @@ class MainActivity : AppCompatActivity() {
             )
 
             apiService.cadastroColaborador(body).enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
                     println("Enviado!");
                 }
 
@@ -154,14 +115,5 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace();
         }
-    }
-
-    fun sendMessage(view: View){
-        view.toString()
-
-        val nomeValue = if (nome != null) nome!!.text else "";
-        val senhaValue = if (senha != null) senha!!.text else "";
-        SaveColaborador(nomeValue.toString(), senhaValue.toString());
-
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TableCell">
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/cell_border</item>
+    </style>
+    <style name="TableHeader">
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/header_border</item>
+    </style>
+</resources>
