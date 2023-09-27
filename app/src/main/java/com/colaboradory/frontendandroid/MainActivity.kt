@@ -1,14 +1,10 @@
 package com.colaboradory.frontendandroid
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -16,8 +12,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.colaboradory.APIservice.API
 import com.colaboradory.frontendandroid.databinding.ActivityMainBinding
-import com.colaboradory.frontendandroid.databinding.FragmentFirstBinding
-import com.colaboradory.model.Colaborador
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -30,8 +24,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private var nome: EditText? = null;
-    private var senha: EditText? = null;
+    private var nome: EditText? = null
+    private var senha: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val view = binding!!.root
+        val view = binding.root
 
         nome = view.findViewById(R.id.editNameText)
         senha = view.findViewById(R.id.editPasswordText)
@@ -80,9 +74,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun sendMessage(view: View){
-        val nomeValue = if (nome != null) nome!!.text else "";
-        val senhaValue = if (senha != null) senha!!.text else "";
-        SaveColaborador(nomeValue.toString(), senhaValue.toString());
+        val nomeValue = if (nome != null) nome!!.text else ""
+        val senhaValue = if (senha != null) senha!!.text else ""
+        SaveColaborador(nomeValue.toString(), senhaValue.toString())
     }
 
     fun SaveColaborador(nome: String, senha: String) {
@@ -104,16 +98,16 @@ class MainActivity : AppCompatActivity() {
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    println("Enviado!");
+                    println("Enviado!")
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    println("Não enviado!");
-                    t.printStackTrace();
+                    println("Não enviado!")
+                    t.printStackTrace()
                 }
             })
         } catch (e: Exception) {
-            e.printStackTrace();
+            e.printStackTrace()
         }
     }
 }

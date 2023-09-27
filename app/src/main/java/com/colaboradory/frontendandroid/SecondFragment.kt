@@ -2,7 +2,6 @@ package com.colaboradory.frontendandroid
 
 import android.os.Bundle
 import android.view.ContextThemeWrapper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.widget.TextViewCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.colaboradory.APIservice.API
 import com.colaboradory.frontendandroid.databinding.FragmentSecondBinding
@@ -36,7 +35,7 @@ class SecondFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         val view = _binding!!.root
@@ -87,7 +86,7 @@ class SecondFragment : Fragment() {
                         scoreHeader.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                         headerRow.addView(scoreHeader)
 
-                        tableLayout?.addView(headerRow)
+                        tableLayout.addView(headerRow)
 
                         if (colaboradores != null) {
                             for (colaborador in colaboradores) {
@@ -111,7 +110,7 @@ class SecondFragment : Fragment() {
                                 scoreTextView.text = colaborador.score
                                 tableRow.addView(scoreTextView)
 
-                                tableLayout?.addView(tableRow)
+                                tableLayout.addView(tableRow)
                             }
 
                         }
@@ -121,13 +120,13 @@ class SecondFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<List<Colaborador>>, t: Throwable) {
-                    println("Não enviado!");
-                    t.printStackTrace();
+                    println("Não enviado!")
+                    t.printStackTrace()
                 }
 
             })
         } catch (e: Exception) {
-            e.printStackTrace();
+            e.printStackTrace()
         }
     }
 
