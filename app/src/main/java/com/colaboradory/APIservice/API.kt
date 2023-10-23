@@ -11,6 +11,9 @@ interface API {
     @POST("/")
     fun cadastroColaborador(@Body body: Map<String, String>): Call<ResponseBody>
 
+    @POST("/associateBoss")
+    fun associaChefe(@Body body: Map<String, Integer?>): Call<ResponseBody>
+
     @GET("/")
     fun listaColaboradores(): Call<List<Colaborador>>
 }

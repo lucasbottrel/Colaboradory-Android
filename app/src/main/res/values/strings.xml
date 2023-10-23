@@ -2,8 +2,9 @@
     <string name="app_name">FrontendAndroid</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">Cadastro</string>
+    <string name="second_fragment_label">Listagem</string>
+    <string name="placeholder_text">Selecione uma opção...</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
