@@ -86,11 +86,15 @@ class SecondFragment : Fragment() {
                         scoreHeader.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                         headerRow.addView(scoreHeader)
 
+                        val bossHeader = TextView(ContextThemeWrapper(requireContext(), R.style.TableHeader))
+                        bossHeader.text = "Chefe"
+                        bossHeader.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                        headerRow.addView(bossHeader)
+
                         tableLayout.addView(headerRow)
 
                         if (colaboradores != null) {
                             for (colaborador in colaboradores) {
-                                println("ID: ${colaborador.id}, Nome: ${colaborador.nome}, Score: ${colaborador.score}, Complexidade: ${colaborador.complexidade}")
 
                                 val tableRow = TableRow(requireContext())
 
@@ -109,6 +113,10 @@ class SecondFragment : Fragment() {
                                 val scoreTextView = TextView(ContextThemeWrapper(requireContext(), R.style.TableCell))
                                 scoreTextView.text = colaborador.score
                                 tableRow.addView(scoreTextView)
+
+                                val bossTextView = TextView(ContextThemeWrapper(requireContext(), R.style.TableCell))
+                                bossTextView.text = colaborador.chefe?.nome;
+                                tableRow.addView(bossTextView)
 
                                 tableLayout.addView(tableRow)
                             }

@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cadastro"
+            android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/button_first"
             app:layout_constraintTop_toBottomOf="@+id/button_first"
@@ -55,34 +56,35 @@
             app:layout_constraintStart_toStartOf="@+id/editNameText"
             app:layout_constraintTop_toBottomOf="@+id/editNameText" />
 
+
         <Button
             android:id="@+id/button"
             android:layout_width="124dp"
             android:layout_height="56dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:onClick="sendMessage"
             android:text="Salvar"
             app:layout_constraintStart_toStartOf="@+id/editPasswordText"
             app:layout_constraintTop_toBottomOf="@+id/editPasswordText" />
 
-
         <TextView
             android:id="@+id/AssociateBoss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="32dp"
 
-            android:text="Associar Subordinado"
+            android:text="Associar Chefe"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/button"
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
         <Button
             android:id="@+id/saveBoss"
-            android:layout_width="124dp"
+            android:layout_width="180dp"
             android:layout_height="56dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="24dp"
             android:onClick="saveBoss"
-            android:text="Salvar"
+            android:text="Associa Chefe"
             app:layout_constraintStart_toStartOf="@+id/subordinado"
             app:layout_constraintTop_toBottomOf="@+id/subordinado" />
 
