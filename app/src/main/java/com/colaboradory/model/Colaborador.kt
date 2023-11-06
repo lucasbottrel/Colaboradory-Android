@@ -18,7 +18,7 @@ data class Colaborador(
     @SerializedName("score")
     var score: String?,
 
-    @SerializedName("id_chefe")
+    @SerializedName("chefe")
     var chefe: Colaborador?,
 
 )
